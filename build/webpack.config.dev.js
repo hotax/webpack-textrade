@@ -13,9 +13,25 @@ module.exports = {
     ],
     module: {
         rules: [{
-            test: /\.vue$/,
-            use: 'vue-loader'
-        }]
+                test: /\.vue$/,
+                use: 'vue-loader'
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.styl(us)?$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                    'stylus-loader'
+                ]
+            }
+        ]
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
