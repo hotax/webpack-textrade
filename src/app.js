@@ -4,7 +4,7 @@ import Vuetify from 'vuetify'
 import 'babel-polyfill'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import '../assets/app.styl'
+import 'vuetify/dist/vuetify.min.css'
 import VueFetch from './plugins/fetch';
 import App from './App.vue'
 import router from './router';

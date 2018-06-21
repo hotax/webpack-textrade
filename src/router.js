@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from './store'
-//import Specs from './pages/Specs.vue'
+import Specs from './pages/Specs.vue'
 import NotFound from './components/NotFound.vue'
 
 Vue.use(VueRouter)
 
 const routes = [{
+	path: '/',
+	name: 'home',
+	component: Specs,
+}, {
 	path: '*',
 	component: NotFound
 }];
