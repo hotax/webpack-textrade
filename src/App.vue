@@ -54,7 +54,10 @@
       <v-text-field flat solo-inverted prepend-icon="search" label="Search" class="hidden-sm-and-down"></v-text-field>
       <v-spacer></v-spacer>
       <v-btn icon>
-        <v-icon>apps</v-icon>
+        <v-icon>power_settings_new</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>account_box</v-icon>
       </v-btn>
       <v-btn icon>
         <v-icon>notifications</v-icon>

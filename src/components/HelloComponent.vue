@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<img src="static/img/suixi.jpg" />
-		<h1 class="center-content">Hello {{ name }}!</h1>
+		<h1 class="center-content">{{ name }}!</h1>
 	</div>
 
 </template>
