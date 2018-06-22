@@ -50,7 +50,7 @@ const store = new Vuex.Store({
                 if (user) {
                     // Redirect to the wanted route if any or else to home
                     router.replace(router.currentRoute.params.wantedRoute || {
-                        name: 'home'
+                        name: 'specs'
                     })
                 }
             } catch (e) {
@@ -66,7 +66,7 @@ const store = new Vuex.Store({
             // We go to the login screen
             if (router.currentRoute.matched.some(r => r.meta.private)) {
                 router.replace({
-                    name: 'login',
+                    name: 'home',
                     params: {
                         wantedRoute: router.currentRoute.fullPath,
                     }

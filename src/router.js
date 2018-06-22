@@ -15,6 +15,9 @@ const routes = [{
 	path: '/specs',
 	name: 'specs',
 	component: Specs,
+	meta: {
+		private: true
+	}
 }, {
 	path: '*',
 	component: NotFound

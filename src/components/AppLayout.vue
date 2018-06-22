@@ -53,10 +53,10 @@
       </v-toolbar-title>
       <v-text-field flat solo-inverted prepend-icon="search" label="Search" class="hidden-sm-and-down"></v-text-field>
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <v-btn icon @click="logout">
         <v-icon>power_settings_new</v-icon>
       </v-btn>
-      <v-btn icon>
+      <v-btn icon @click="openGithubSignin">
         <v-icon>account_box</v-icon>
       </v-btn>
       <v-btn icon>
@@ -80,6 +80,10 @@
 </template>
 
 <script>
+  import {
+    mapGetters,
+    mapActions
+  } from 'vuex'
   export default {
     data: () => ({
       dialog: false,
@@ -154,7 +158,27 @@
       source: String
     },
     methods: {
-      aa() {}
-    }
+      ...mapActions(['login', 'logout']),
+      aa() {},
+      openGithubSignin() {
+        const url = 'http://localhost:8089/api/auth/github'
+        const name = 'github_login'
+        window.open(url, name)
+      },
+      handleMessage({
+        data,
+        origin
+      }) {
+        if (origin !== 'http://localhost:8089') {
+          return
+        }
+        if (data === 'success') {
+          this.login()
+        }
+      },
+    },
+    mounted() {
+      window.addEventListener('message', this.handleMessage)
+    },
   }
 </script>
