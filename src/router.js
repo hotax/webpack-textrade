@@ -46,7 +46,7 @@ router.beforeEach((to, from, next) => {
 	const user = store.getters.user;
 	if (to.matched.some((r) => r.meta.private) && !user) {
 		next({
-			name: 'login',
+			name: 'home',
 			params: {
 				wantedRoute: to.fullPath
 			}

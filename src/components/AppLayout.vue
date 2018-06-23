@@ -53,15 +53,19 @@
       </v-toolbar-title>
       <v-text-field flat solo-inverted prepend-icon="search" label="Search" class="hidden-sm-and-down"></v-text-field>
       <v-spacer></v-spacer>
-      <v-btn icon v-if="user" @click="logout">
-        <v-icon>power_settings_new</v-icon>
-      </v-btn>
+      <v-layout v-if="user" row>
+        <v-flex xs11>
+          <profile-picture v-if="user" />
+        </v-flex>
+        <v-flex>
+          <v-btn icon v-if="user" @click="logout">
+            <v-icon>power_settings_new</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
       <v-btn icon v-if="!user" @click="openGithubSignin">
         <v-icon>account_box</v-icon>
       </v-btn>
-      <v-avatar v-if="userPicture" size="48px">
-        <img :src="userPicture" alt="Vuetify">
-      </v-avatar>
     </v-toolbar>
     <v-content>
       <v-container fluid>
@@ -75,11 +79,15 @@
 </template>
 
 <script>
+  import ProfilePicture from './ProfilePicture.vue'
   import {
     mapGetters,
     mapActions
   } from 'vuex'
   export default {
+    components: {
+      ProfilePicture
+    },
     data: () => ({
       dialog: false,
       drawer: null,
@@ -159,6 +167,7 @@
       openGithubSignin() {
         const url = 'http://localhost:8089/api/auth/github'
         const name = 'github_login'
+        const specs = 'width=500,height=500'
         window.open(url, name)
       },
       handleMessage({
