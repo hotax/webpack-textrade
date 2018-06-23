@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vuetify/dist/vuetify.min.css'
 import VueFetch from './plugins/fetch';
-import App from './components/AppLayout.vue'
+import App from './pages/App.vue'
 import router from './router';
 import * as filters from './filters';
 import store from './store';
@@ -27,7 +27,7 @@ Vue.use(BootstrapVue)
 Vue.use(Vuetify)
 
 async function main() {
-	await store.dispatch('init');
+	// await store.dispatch('init');
 
 	new Vue({
 		...App,
