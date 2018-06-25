@@ -1,12 +1,15 @@
 <template>
-    <v-toolbar-items>
-        <v-flex>
-            <span>登录</span>
-            <v-btn icon @click="openGithubSignin">
-                <v-icon>account_box</v-icon>
-            </v-btn>
-        </v-flex>
-    </v-toolbar-items>
+    <!-- <div>
+        <span>登录</span>
+        <v-btn icon @click="openGithubSignin">
+            <v-icon>account_box</v-icon>
+        </v-btn>
+    </div> -->
+    <v-btn flat large icon @click="openGithubSignin">
+
+        <v-icon>account_box</v-icon>
+        登录
+    </v-btn>
 </template>
 
 <script>

@@ -1,8 +1,7 @@
 <template>
     <app-layout>
         <nav-menu slot="left" :data='navMenu'></nav-menu>
-        <template slot="head">
-            <v-spacer></v-spacer>
+        <template slot="head-right">
             <user-menu v-if="user" :text='user.profile.displayName' :imgSrc='userPicture'>
                 <v-list>
                     <v-list-tile>
@@ -41,7 +40,7 @@
         },
         data: () => ({
             navMenu: {
-                dense: true,
+                dense: false,
                 items: [{
                     icon: 'contacts',
                     text: 'Contacts'
