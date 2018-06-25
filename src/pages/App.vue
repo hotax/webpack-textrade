@@ -28,7 +28,7 @@
         mapActions
     } from 'vuex'
     import AppLayout from '../../finelets/components/AppLayout.vue'
-    import NavMenu from '../../finelets/components/NavMenu.vue'
+    import NavMenu from '../../finelets/components/NavList.vue'
     import UserMenu from '../../finelets/components/UserMenu.vue'
     import Signin from '../components/Signin.vue'
     export default {
