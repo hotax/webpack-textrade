@@ -1,6 +1,6 @@
 <template>
-    <v-list dense>
-        <template v-for="item in items">
+    <v-list :dense='data.dense'>
+        <template v-for="item in data.items">
             <v-layout row v-if="item.heading" align-center :key="item.heading">
                 <v-flex xs6>
                     <v-subheader v-if="item.heading">
@@ -20,7 +20,7 @@
                         </v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
-                <v-list-tile v-for="(child, i) in item.children" :key="i" @click="aa">
+                <v-list-tile v-for="(child, i) in item.children" :key="i">
                     <v-list-tile-action v-if="child.icon">
                         <v-icon>{{ child.icon }}</v-icon>
                     </v-list-tile-action>
@@ -31,7 +31,7 @@
                     </v-list-tile-content>
                 </v-list-tile>
             </v-list-group>
-            <v-list-tile v-else @click="aa" :key="item.text">
+            <v-list-tile v-else :key="item.text">
                 <v-list-tile-action>
                     <v-icon>{{ item.icon }}</v-icon>
                 </v-list-tile-action>
@@ -48,8 +48,9 @@
 <script>
     export default {
         props: {
-            items: {
-                type: Object
+            data: {
+                type: Object,
+                required: true
             }
         }
     }

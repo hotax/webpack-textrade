@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <v-flex>
         <v-avatar v-if="userPicture" :size="size">
             <img :src="src ? src : userPicture" alt="Vuetify" />
         </v-avatar>
         <span>{{user.profile.displayName}}</span>
-    </div>
+    </v-flex>
 </template>
 
 <script>
