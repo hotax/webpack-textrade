@@ -1,5 +1,5 @@
 <template>
-    <app-layout>
+    <app-layout title="亿泰报价系统" logo="static/img/jsmetta.jpg" copyright='Finelets 2018'>
         <nav-menu slot="left" :data='navMenu'></nav-menu>
         <template slot="head-right">
             <user-menu v-if="user" :text='user.profile.displayName' :imgSrc='userPicture'>
