@@ -16,7 +16,7 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list> -->
-                <nav-list :data='userMenuData'></nav-list>
+                <nav-list :data='userMenuData' @selected='act'></nav-list>
             </user-menu>
             <signin v-else></signin>
         </template>
@@ -101,6 +101,9 @@
                 if (data === 'success') {
                     this.login()
                 }
+            },
+            act(item) {
+                if (item == this.userMenuData.items[2]) this.logout()
             },
         },
         mounted() {

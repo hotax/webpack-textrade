@@ -23,7 +23,7 @@
                     </v-list-tile-content>
                 </v-list-tile>
             </v-list-group>
-            <v-list-tile v-else :key="item.title" avatar>
+            <v-list-tile v-else :key="item.title" avatar @click="emitSelected(item)">
                 <v-list-tile-avatar v-if='item.avatar'>
                     <img :src="item.avatar">
                 </v-list-tile-avatar>
@@ -45,6 +45,11 @@
             data: {
                 type: Object,
                 required: true
+            }
+        },
+        methods: {
+            emitSelected(item) {
+                this.$emit('selected', item)
             }
         }
     }
