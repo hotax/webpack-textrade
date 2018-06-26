@@ -48,7 +48,8 @@
                         divider: true
                     },
                     {
-                        title: '退出',
+                        icon: 'exit_to_app',
+                        title: '退出'
                     }
                 ]
             },
@@ -64,21 +65,21 @@
                     model: true,
                     children: [{
                         icon: 'add',
-                        text: 'Create label'
+                        title: 'Create label'
                     }]
                 }, {
                     icon: 'keyboard_arrow_up',
                     'icon-alt': 'keyboard_arrow_down',
-                    text: 'More',
+                    title: 'More',
                     model: false,
                     children: [{
-                        text: 'Import'
+                        title: 'Import'
                     }, {
-                        text: 'Export'
+                        title: 'Export'
                     }]
                 }, {
                     icon: 'settings',
-                    text: 'Settings'
+                    title: 'Settings'
                 }]
             },
         }),
