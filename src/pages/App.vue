@@ -49,7 +49,7 @@
                     },
                     {
                         icon: 'exit_to_app',
-                        title: '退出'
+                        title: '&#x1f436;退出'
                     }
                 ]
             },
