@@ -1,6 +1,6 @@
 <template>
     <app-layout title="亿泰报价系统" logo="static/img/jsmetta.jpg" copyright='Finelets 2018'>
-        <nav-list slot="left" :data='navMenu'></nav-list>
+        <nav-list slot="left" :data='navMenu' @selected='act'></nav-list>
         <template slot="head-right">
             <user-menu v-if="user" :text='user.profile.displayName' :imgSrc='userPicture'>
                 <nav-list :data='userMenuData' @selected='act'></nav-list>
@@ -15,6 +15,7 @@
         mapGetters,
         mapActions
     } from 'vuex'
+    import router from '../router.js'
     import AppLayout from '../../finelets/components/AppLayout.vue'
     import NavList from '../../finelets/components/NavList.vue'
     import UserMenu from '../../finelets/components/UserMenu.vue'
@@ -46,7 +47,8 @@
                 dense: false,
                 items: [{
                     icon: 'contacts',
-                    title: 'Contacts'
+                    title: '报价',
+                    action: 'qouter'
                 }, {
                     icon: 'keyboard_arrow_up',
                     'icon-alt': 'keyboard_arrow_down',
@@ -79,6 +81,11 @@
             },
             exit() {
                 this.logout()
+            },
+            qouter() {
+                router.replace({
+                    name: 'specs'
+                })
             }
         }
     }
