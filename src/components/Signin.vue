@@ -1,12 +1,5 @@
 <template>
-    <!-- <div>
-        <span>登录</span>
-        <v-btn icon @click="openGithubSignin">
-            <v-icon>account_box</v-icon>
-        </v-btn>
-    </div> -->
     <v-btn flat large icon @click="openGithubSignin">
-
         <v-icon>account_box</v-icon>
         登录
     </v-btn>

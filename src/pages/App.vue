@@ -3,19 +3,6 @@
         <nav-list slot="left" :data='navMenu'></nav-list>
         <template slot="head-right">
             <user-menu v-if="user" :text='user.profile.displayName' :imgSrc='userPicture'>
-                <!-- <v-list>
-                    <v-list-tile>
-                        <v-list-tile-content>
-                            <v-list-tile-title>已登录：{{user.profile.displayName}}</v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                    <v-divider></v-divider>
-                    <v-list-tile @click="logout">
-                        <v-list-tile-content>
-                            <v-list-tile-title>退出</v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                </v-list> -->
                 <nav-list :data='userMenuData' @selected='act'></nav-list>
             </user-menu>
             <signin v-else></signin>
@@ -41,6 +28,7 @@
         },
         data: () => ({
             userMenuData: {
+                dense: true,
                 items: [{
                         header: '已登录：clx' // + this.user.profile.displayName
                     },
@@ -49,7 +37,8 @@
                     },
                     {
                         icon: 'exit_to_app',
-                        title: '&#x1f436;退出'
+                        title: '&#x1f436;退出',
+                        action: 'exit'
                     }
                 ]
             },
@@ -84,31 +73,13 @@
             },
         }),
         computed: mapGetters(['user', 'userPicture', ]),
-        methods: { ...mapActions(['login', 'logout']),
-            openGithubSignin() {
-                const url = 'http://localhost:8089/api/auth/github'
-                const name = 'github_login'
-                const specs = 'width=500,height=500'
-                window.open(url, name)
-            },
-            handleMessage({
-                data,
-                origin
-            }) {
-                if (origin !== 'http://localhost:8089') {
-                    return
-                }
-                if (data === 'success') {
-                    this.login()
-                }
-            },
+        methods: { ...mapActions(['logout']),
             act(item) {
-                if (item == this.userMenuData.items[2]) this.logout()
+                this[item.action]()
             },
-        },
-        mounted() {
-            window.addEventListener('message',
-                this.handleMessage)
+            exit() {
+                this.logout()
+            }
         }
     }
 </script>
