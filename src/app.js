@@ -27,7 +27,7 @@ Vue.use(BootstrapVue)
 Vue.use(Vuetify)
 
 async function main() {
-	// await store.dispatch('init');
+	await store.dispatch('init');
 
 	new Vue({
 		...App,

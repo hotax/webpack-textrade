@@ -1,9 +1,9 @@
 <template>
     <app-layout title="亿泰报价系统" logo="static/img/jsmetta.jpg" copyright='Finelets 2018'>
-        <nav-menu slot="left" :data='navMenu'></nav-menu>
+        <nav-list slot="left" :data='navMenu'></nav-list>
         <template slot="head-right">
             <user-menu v-if="user" :text='user.profile.displayName' :imgSrc='userPicture'>
-                <v-list>
+                <!-- <v-list>
                     <v-list-tile>
                         <v-list-tile-content>
                             <v-list-tile-title>已登录：{{user.profile.displayName}}</v-list-tile-title>
@@ -15,7 +15,8 @@
                             <v-list-tile-title>退出</v-list-tile-title>
                         </v-list-tile-content>
                     </v-list-tile>
-                </v-list>
+                </v-list> -->
+                <nav-list :data='userMenuData'></nav-list>
             </user-menu>
             <signin v-else></signin>
         </template>
@@ -28,26 +29,38 @@
         mapActions
     } from 'vuex'
     import AppLayout from '../../finelets/components/AppLayout.vue'
-    import NavMenu from '../../finelets/components/NavList.vue'
+    import NavList from '../../finelets/components/NavList.vue'
     import UserMenu from '../../finelets/components/UserMenu.vue'
     import Signin from '../components/Signin.vue'
     export default {
         components: {
             AppLayout,
-            NavMenu,
+            NavList,
             UserMenu,
             Signin
         },
         data: () => ({
+            userMenuData: {
+                items: [{
+                        header: '已登录：clx' // + this.user.profile.displayName
+                    },
+                    {
+                        divider: true
+                    },
+                    {
+                        title: '退出',
+                    }
+                ]
+            },
             navMenu: {
                 dense: false,
                 items: [{
                     icon: 'contacts',
-                    text: 'Contacts'
+                    title: 'Contacts'
                 }, {
                     icon: 'keyboard_arrow_up',
                     'icon-alt': 'keyboard_arrow_down',
-                    text: 'Labels',
+                    title: 'Labels',
                     model: true,
                     children: [{
                         icon: 'add',
