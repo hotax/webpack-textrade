@@ -19,7 +19,7 @@ const actions = {
                 // Redirect to the wanted route if any or else to home
                 router.replace(
                     router.currentRoute.params.wantedRoute || {
-                        name: 'home'
+                        name: 'specs'
                     }
                 )
             }
