@@ -1,6 +1,7 @@
 <template>
+    <!-- <app-layout title="亿泰报价系统" logo="static/img/jsmetta.jpg" copyright='Finelets 2018' :drawer='drawer' @drawerclicked='drawer = !drawer'> -->
     <app-layout title="亿泰报价系统" logo="static/img/jsmetta.jpg" copyright='Finelets 2018'>
-        <nav-list slot="left" :data='navMenu'></nav-list>
+        <nav-list v-if='drawer' slot="left" :data='navMenu'></nav-list>
         <template slot="head-right">
             <user-menu v-if="user" :text='user.profile.displayName' :imgSrc='userPicture'>
                 <nav-list :data='userMenuData' @selected='onSelected'></nav-list>
@@ -28,6 +29,7 @@
             Signin
         },
         data: () => ({
+            //drawer: false,
             navMenu: {
                 dense: false,
                 items: [{

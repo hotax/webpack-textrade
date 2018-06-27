@@ -1,11 +1,11 @@
 <template>
     <v-app dark>
-        <v-navigation-drawer fixed :clipped="$vuetify.breakpoint.mdAndUp" app v-model="drawer">
+        <v-navigation-drawer fixed :clipped="$vuetify.breakpoint.mdAndUp" app :value='drawer'>
             <slot name="left"></slot>
         </v-navigation-drawer>
         <v-toolbar color="blue darken-3" dark app :clipped-left="$vuetify.breakpoint.mdAndUp" fixed>
             <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-                <img :src="logo" height="48" weight="48" @click.stop="drawer = !drawer" />
+                <img :src="logo" height="48" weight="48" @click.stop="emitDrawerClicked" />
                 <span>{{title}}</span>
             </v-toolbar-title>
             <v-toolbar-items>
@@ -27,9 +27,25 @@
 
 <script>
     export default {
-        data: () => ({
-            drawer: null,
-        }),
-        props: ['title', 'logo', 'copyright']
+        props: {
+            drawer: {
+                type: Boolean,
+                default: false
+            },
+            title: {
+                type: String
+            },
+            logo: {
+                type: String
+            },
+            copyright: {
+                type: String
+            }
+        },
+        methods: {
+            emitDrawerClicked() {
+                this.$emit('drawerclicked')
+            }
+        }
     }
 </script>
