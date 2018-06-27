@@ -1,9 +1,9 @@
 <template>
     <app-layout title="亿泰报价系统" logo="static/img/jsmetta.jpg" copyright='Finelets 2018'>
-        <nav-list slot="left" :data='navMenu' @selected='act'></nav-list>
+        <nav-list slot="left" :data='navMenu'></nav-list>
         <template slot="head-right">
             <user-menu v-if="user" :text='user.profile.displayName' :imgSrc='userPicture'>
-                <nav-list :data='userMenuData' @selected='act'></nav-list>
+                <nav-list :data='userMenuData' @selected='onSelected'></nav-list>
             </user-menu>
             <signin v-else></signin>
         </template>
@@ -28,64 +28,54 @@
             Signin
         },
         data: () => ({
-            userMenuData: {
-                dense: true,
-                items: [{
-                        header: '已登录：clx' // + this.user.profile.displayName
-                    },
-                    {
-                        divider: true
-                    },
-                    {
-                        icon: 'exit_to_app',
-                        title: '&#x1f436;退出',
-                        action: 'exit'
-                    }
-                ]
-            },
             navMenu: {
                 dense: false,
                 items: [{
+                    icon: 'settings',
+                    title: '首页',
+                    to: {
+                        name: 'home'
+                    }
+                }, {
                     icon: 'contacts',
                     title: '报价',
-                    action: 'qouter'
+                    to: {
+                        name: 'specs'
+                    }
                 }, {
                     icon: 'keyboard_arrow_up',
                     'icon-alt': 'keyboard_arrow_down',
                     title: 'Labels',
-                    model: true,
+                    model: false,
                     children: [{
                         icon: 'add',
                         title: 'Create label'
                     }]
-                }, {
-                    icon: 'keyboard_arrow_up',
-                    'icon-alt': 'keyboard_arrow_down',
-                    title: 'More',
-                    model: false,
-                    children: [{
-                        title: 'Import'
-                    }, {
-                        title: 'Export'
-                    }]
-                }, {
-                    icon: 'settings',
-                    title: 'Settings'
                 }]
             },
         }),
-        computed: mapGetters(['user', 'userPicture', ]),
+        computed: { ...mapGetters(['user', 'userPicture', ]),
+            userMenuData() {
+                return {
+                    dense: true,
+                    items: [{
+                        header: "已登录：" + (this.user ? this.user.profile.displayName : '')
+                    }, {
+                        divider: true
+                    }, {
+                        icon: 'exit_to_app',
+                        title: '&#x1f436;退出',
+                        action: 'exit'
+                    }]
+                }
+            },
+        },
         methods: { ...mapActions(['logout']),
-            act(item) {
+            onSelected(item) {
                 this[item.action]()
             },
             exit() {
                 this.logout()
-            },
-            qouter() {
-                router.replace({
-                    name: 'specs'
-                })
             }
         }
     }
