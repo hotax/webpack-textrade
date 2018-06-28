@@ -1,38 +1,37 @@
 <template>
     <v-container fluid fill-height light class="pt-0 pb-0">
         <v-layout row>
-            <v-flex d-flex xs2 class="pt-3 bg-light">
+            <v-flex d-flex lg2 class="pt-3">
                 <v-layout column>
-                    <label for="exampleInputEmail1" class="ml-2 text-dark">请输入查询条件：</label>
-                    <textarea id="exampleInputEmail1" class="flex form-control pl-2 text-success"></textarea>
+                    <label for="exampleInputEmail1" class="ml-2 text-light">请输入查询条件：</label>
+                    <textarea id="exampleInputEmail1" class="flex form-control pl-2 text-success bg-dark border-0" v-model="queryCondi"></textarea>
                     <button type="submit" class="btn bg-info">查询</button>
                 </v-layout>
             </v-flex>
-            <v-flex d-flex>
-                <v-card light>
-                    <v-card-media class="white--text" height="300px" src="static/img/suixi.jpg">
-                        <v-container fill-height fluid>
-                            <v-layout fill-height>
-                                <v-flex xs12 align-end flexbox>
-                                    <span class="headline">Top 10 Australian beaches</span>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                    </v-card-media>
-                    <v-card-title>
-                        <div>
-                            <span class="grey--text">Number 10</span>
-                            <br>
-                            <span>Whitehaven Beach</span>
-                            <br>
-                            <span>Whitsunday Island, Whitsunday Islands</span>
-                        </div>
-                    </v-card-title>
-                    <v-card-actions>
-                        <v-btn flat color="orange">Share</v-btn>
-                        <v-btn flat color="orange">Explore</v-btn>
-                    </v-card-actions>
-                </v-card>
+            <!-- <li class="list-group-item" v-for="(item, index) in specs" :key="index">{{item.desc}}</li> -->
+            <v-flex d-flex lg10>
+                <v-data-table :headers="headers" :items="specs" hide-actions item-key="code">
+                    <template slot="items" slot-scope="props">
+                        <tr @click="props.expanded = !props.expanded">
+                            <td>{{ props.item.code }}</td>
+                            <td class="text-xs-right">{{ props.item.name }}</td>
+                            <td class="text-xs-right">{{ props.item.constructure }}</td>
+                            <td class="text-xs-right"></td>
+                            <td class="text-xs-right"></td>
+                            <td class="text-xs-right">{{ props.item.modifiedDate }}</td>
+                        </tr>
+                    </template>
+                    <template slot="expand" slot-scope="props">
+                        <v-card flat>
+                            <v-card-text>{{props.item.grey}}</v-card-text>
+                        </v-card>
+                    </template>
+                    <template slot="footer">
+                        <td colspan="100%">
+                            <strong>This is an extra footer</strong>
+                        </td>
+                    </template>
+                </v-data-table>
             </v-flex>
         </v-layout>
     </v-container>
@@ -47,6 +46,27 @@
         },
         data() {
             return {
+                queryCondi: '{}',
+                headers: [{
+                    text: '编号',
+                    align: 'center',
+                    value: 'code'
+                }, {
+                    text: '名称',
+                    value: 'name'
+                }, {
+                    text: '组织',
+                    value: 'constructure'
+                }, {
+                    text: 'grey',
+                    value: 'grey'
+                }, {
+                    text: '成品',
+                    value: 'product'
+                }, {
+                    text: '日期',
+                    value: 'modifiedDate'
+                }],
                 specs: [{
                         code: '00001',
                         name: '6850 2/3斜（左右捻）',
@@ -110,8 +130,8 @@
                             width: "325(128')",
                             GSM: 250
                         },
-                        createDate: Date.now,
-                        modifiedDate: Date.now
+                        createDate: new Date(2018, 6, 27),
+                        modifiedDate: new Date(2018, 5, 24)
                     },
                     {
                         code: '00002',
@@ -176,8 +196,8 @@
                             width: "325(128')",
                             GSM: 250
                         },
-                        createDate: Date.now,
-                        modifiedDate: Date.now
+                        createDate: new Date(2018, 6, 27),
+                        modifiedDate: new Date(2018, 6, 27)
                     }
                 ]
             }
