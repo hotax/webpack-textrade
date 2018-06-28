@@ -1,8 +1,12 @@
 <template>
-    <v-container fluid fill-height class="p-0">
+    <v-container fluid fill-height light class="pt-0 pb-0">
         <v-layout row>
-            <v-flex d-flex xs2>
-                <v-card dark></v-card>
+            <v-flex d-flex xs2 class="pt-3 bg-light">
+                <v-layout column>
+                    <label for="exampleInputEmail1" class="ml-2 text-dark">请输入查询条件：</label>
+                    <textarea id="exampleInputEmail1" class="flex form-control pl-2 text-success"></textarea>
+                    <button type="submit" class="btn bg-info">查询</button>
+                </v-layout>
             </v-flex>
             <v-flex d-flex>
                 <v-card light>
@@ -46,6 +50,7 @@
         },
         data() {
             return {
+                searchCondition: 'bebveqjrbfqerfbqerjgbfeqrgb',
                 message: '规格查询',
                 navMenu: {
                     dense: false,

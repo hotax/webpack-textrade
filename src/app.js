@@ -5,15 +5,18 @@ import 'babel-polyfill'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vuetify/dist/vuetify.min.css'
-import VueFetch from './plugins/fetch';
+import VueFetch from './plugins/fetch'
 import App from './pages/App.vue'
-import router from './router';
-import * as filters from './filters';
-import store from './store';
+import router from './router'
+import * as filters from './filters'
+import store from './store'
 import {
 	sync
 } from 'vuex-router-sync'
 sync(store, router)
+
+import VueTextareaAutosize from 'vue-textarea-autosize'
+Vue.use(VueTextareaAutosize)
 
 for (const key in filters) {
 	Vue.filter(key, filters[key]);
