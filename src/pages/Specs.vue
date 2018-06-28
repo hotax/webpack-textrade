@@ -16,9 +16,6 @@
                                 <v-flex xs12 align-end flexbox>
                                     <span class="headline">Top 10 Australian beaches</span>
                                 </v-flex>
-                                <v-flex xs12 align-end flexbox>
-                                    <span class="headline">Top 10 Australian beaches1</span>
-                                </v-flex>
                             </v-layout>
                         </v-container>
                     </v-card-media>
@@ -50,34 +47,140 @@
         },
         data() {
             return {
-                searchCondition: 'bebveqjrbfqerfbqerjgbfeqrgb',
-                message: '规格查询',
-                navMenu: {
-                    dense: false,
-                    items: [{
-                        icon: 'settings',
-                        title: '首页',
-                        to: {
-                            name: 'home'
-                        }
-                    }, {
-                        icon: 'contacts',
-                        title: '报价',
-                        to: {
-                            name: 'specs'
-                        }
-                    }, {
-                        icon: 'keyboard_arrow_up',
-                        'icon-alt': 'keyboard_arrow_down',
-                        title: 'Labels',
-                        model: false,
-                        children: [{
-                            icon: 'add',
-                            title: 'Create label'
-                        }]
-                    }]
-                },
+                specs: [{
+                        code: '00001',
+                        name: '6850 2/3斜（左右捻）',
+                        desc: 'desc of 6850 2/3斜（左右捻）',
+                        constructure: '2/3斜',
+                        grey: {
+                            yarn: {
+                                warp: {
+                                    value: [6850],
+                                    unit: 'g'
+                                },
+                                weft: {
+                                    value: [6850],
+                                    unit: 'g'
+                                }
+                            },
+                            dnsty: {
+                                warp: {
+                                    value: [6850],
+                                    unit: 'g'
+                                },
+                                weft: {
+                                    value: [6850],
+                                    unit: 'g'
+                                }
+                            },
+                            width: "'178(70')",
+                            GSM: 150
+                        },
+                        product: {
+                            yarn: {
+                                warp: {
+                                    value: [6850],
+                                    unit: 'g'
+                                },
+                                weft: {
+                                    value: [6850],
+                                    unit: 'g'
+                                }
+                            },
+                            dnstyBW: {
+                                warp: {
+                                    value: [6850],
+                                    unit: 'g'
+                                },
+                                weft: {
+                                    value: [6850],
+                                    unit: 'g'
+                                }
+                            },
+                            dnstyAW: {
+                                warp: {
+                                    value: [6850],
+                                    unit: 'g'
+                                },
+                                weft: {
+                                    value: [6850],
+                                    unit: 'g'
+                                }
+                            },
+                            width: "325(128')",
+                            GSM: 250
+                        },
+                        createDate: Date.now,
+                        modifiedDate: Date.now
+                    },
+                    {
+                        code: '00002',
+                        name: '6850 2/3斜（左右捻）',
+                        desc: 'desc of 6850 2/3斜（左右捻）',
+                        constructure: '2/3斜',
+                        grey: {
+                            yarn: {
+                                warp: {
+                                    value: [6850],
+                                    unit: 'g'
+                                },
+                                weft: {
+                                    value: [6850],
+                                    unit: 'g'
+                                }
+                            },
+                            dnsty: {
+                                warp: {
+                                    value: [6850],
+                                    unit: 'g'
+                                },
+                                weft: {
+                                    value: [6850],
+                                    unit: 'g'
+                                }
+                            },
+                            width: "'178(70')",
+                            GSM: 150
+                        },
+                        product: {
+                            yarn: {
+                                warp: {
+                                    value: [6850],
+                                    unit: 'g'
+                                },
+                                weft: {
+                                    value: [6850],
+                                    unit: 'g'
+                                }
+                            },
+                            dnstyBW: {
+                                warp: {
+                                    value: [6850],
+                                    unit: 'g'
+                                },
+                                weft: {
+                                    value: [6850],
+                                    unit: 'g'
+                                }
+                            },
+                            dnstyAW: {
+                                warp: {
+                                    value: [6850],
+                                    unit: 'g'
+                                },
+                                weft: {
+                                    value: [6850],
+                                    unit: 'g'
+                                }
+                            },
+                            width: "325(128')",
+                            GSM: 250
+                        },
+                        createDate: Date.now,
+                        modifiedDate: Date.now
+                    }
+                ]
             }
-        },
+        }
     }
 </script>
