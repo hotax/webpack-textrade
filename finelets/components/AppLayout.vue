@@ -1,6 +1,6 @@
 <template>
     <v-app dark>
-        <v-navigation-drawer fixed :clipped="$vuetify.breakpoint.mdAndUp" app :value='drawer'>
+        <v-navigation-drawer v-if='drawer' fixed :clipped="$vuetify.breakpoint.mdAndUp" app :value='drawer'>
             <slot name="left"></slot>
         </v-navigation-drawer>
         <v-toolbar color="blue darken-3" dark app :clipped-left="$vuetify.breakpoint.mdAndUp" fixed>
@@ -19,7 +19,7 @@
         <v-content>
             <router-view></router-view>
         </v-content>
-        <v-footer app fixed>
+        <v-footer color="blue darken-3" dark app fixed>
             <span>&copy; {{copyright}}</span>
         </v-footer>
     </v-app>
