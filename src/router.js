@@ -3,48 +3,60 @@ import VueRouter from 'vue-router'
 import store from './store'
 import Home from './pages/Home.vue'
 import Specs from './pages/Specs.vue'
+import NewSpec from './pages/EditSpec.vue'
 import NotFound from './components/NotFound.vue'
 
 Vue.use(VueRouter)
 
 const routes = [{
-	path: '/',
-	name: 'home',
-	component: Home,
-}, {
-	path: '/specs',
-	name: 'specs',
-	component: Specs,
-	meta: {
-		private: true
+		path: '/',
+		name: 'home',
+		component: Home
+	},
+	{
+		path: '/specs',
+		name: 'specs',
+		component: Specs,
+		meta: {
+			private: true
+		}
+	},
+	{
+		path: '/specs/new',
+		name: 'createSpec',
+		component: NewSpec,
+		meta: {
+			private: true
+		}
+	},
+	{
+		path: '*',
+		component: NotFound
 	}
-}, {
-	path: '*',
-	component: NotFound
-}];
+]
 
 const router = new VueRouter({
 	routes
-});
+})
 
 router.beforeEach((to, from, next) => {
-	const user = store.getters.user;
-	if (to.matched.some((r) => r.meta.private) && !user) {
+	const user = store.getters.user
+	if (to.matched.some(r => r.meta.private) && !user) {
 		next({
 			name: 'home',
 			params: {
 				wantedRoute: to.fullPath
 			}
-		});
-		return;
+		})
+		return
 	}
-	if (to.matched.some((r) => r.meta.guest) && user) {
+	if (to.matched.some(r => r.meta.guest) && user) {
 		next({
 			name: 'home'
-		});
-		return;
+		})
+		return
 	}
-	next();
-});
+	next()
+})
 
-export default router;
+export default router

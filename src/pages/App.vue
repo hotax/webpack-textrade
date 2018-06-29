@@ -100,7 +100,9 @@
                 this[item.action]()
             },
             addSpec() {
-                alert('add spec')
+                router.replace({
+                    name: 'createSpec'
+                })
             },
             exit() {
                 this.logout()
