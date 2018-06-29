@@ -3,6 +3,19 @@
     <app-layout title="亿泰报价系统" logo="static/img/jsmetta.jpg" copyright='Finelets 2018'>
         <!-- <nav-list slot="left" :data='navMenu'></nav-list> -->
         <template slot="head-right">
+            <v-menu v-if="user" offset-y bottom>
+                <v-btn slot="activator" flat>
+                    <v-flex>
+                        <v-btn small fab round>
+                            <v-icon dark>note_add</v-icon>
+                        </v-btn>
+                        <v-btn icon flat>
+                            <v-icon>keyboard_arrow_down</v-icon>
+                        </v-btn>
+                    </v-flex>
+                </v-btn>
+                <nav-list :data='addMenuData' @selected='onSelected'></nav-list>
+            </v-menu>
             <user-menu v-if="user" :text='user.profile.displayName' :imgSrc='userPicture'>
                 <nav-list :data='userMenuData' @selected='onSelected'></nav-list>
             </user-menu>
@@ -57,6 +70,16 @@
             },
         }),
         computed: { ...mapGetters(['user', 'userPicture', ]),
+            addMenuData() {
+                return {
+                    dense: true,
+                    items: [{
+                        icon: 'perm_media',
+                        title: '规格',
+                        action: 'addSpec'
+                    }]
+                }
+            },
             userMenuData() {
                 return {
                     dense: true,
@@ -75,6 +98,9 @@
         methods: { ...mapActions(['logout']),
             onSelected(item) {
                 this[item.action]()
+            },
+            addSpec() {
+                alert('add spec')
             },
             exit() {
                 this.logout()

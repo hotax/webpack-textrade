@@ -8,7 +8,6 @@
                     <button type="submit" class="btn bg-info">查询</button>
                 </v-layout>
             </v-flex>
-            <!-- <li class="list-group-item" v-for="(item, index) in specs" :key="index">{{item.desc}}</li> -->
             <v-flex d-flex lg10>
                 <v-data-table :headers="headers" :items="specs" hide-actions item-key="code">
                     <template slot="items" slot-scope="props">
@@ -26,11 +25,11 @@
                             <v-card-text>{{props.item.grey}}</v-card-text>
                         </v-card>
                     </template>
-                    <template slot="footer">
+                    <!-- <template slot="footer">
                         <td colspan="100%">
                             <strong>This is an extra footer</strong>
                         </td>
-                    </template>
+                    </template> -->
                 </v-data-table>
             </v-flex>
         </v-layout>
@@ -47,24 +46,30 @@
         data() {
             return {
                 queryCondi: '{}',
+                pagination: {},
                 headers: [{
                     text: '编号',
                     align: 'center',
                     value: 'code'
                 }, {
                     text: '名称',
+                    align: 'center',
                     value: 'name'
                 }, {
                     text: '组织',
+                    align: 'center',
                     value: 'constructure'
                 }, {
                     text: 'grey',
+                    align: 'center',
                     value: 'grey'
                 }, {
                     text: '成品',
+                    align: 'center',
                     value: 'product'
                 }, {
                     text: '日期',
+                    align: 'center',
                     value: 'modifiedDate'
                 }],
                 specs: [{
