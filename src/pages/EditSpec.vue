@@ -1,11 +1,11 @@
 <template>
     <div class="row justify-content-center">
         <div class="col-12 col-sm-8">
-            <form>
+            <form @submit.prevent="submit">
                 <div class="form-row mt-2 mb-4 border-bottom align-items-end row justify-content-between">
                     <h2>产品规格</h2>
-                    <span>标识：{{spec.id}}</span>
-                    <span>日期：{{spec.modifiedDate}}</span>
+                    <span v-if='spec.id'>标识：{{spec.id}}</span>
+                    <span v-if='spec.id'>日期：{{spec.modifiedDate}}</span>
                 </div>
 
                 <div class="form-row">
@@ -24,39 +24,175 @@
                     <input type="text" class="form-control" id="desc" v-model="spec.desc">
                 </div>
 
-                <div class="row mb-2">
-                    <div class="col col-auto">
-                        <span>坯布:</span>
+                <div class="form-row">
+                    <div class="form-group col-10">
+                        <label>纱支：</label>
+                        <div class="row align-items-center">
+                            <div class="col col-auto">
+                                <span>径向： </span>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col col-auto">
+                                <span>纬向： </span>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col border">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <div class="row align-items-end">
-                                            <label>纱支：</label>
+
+                    <div class="form-group col-1 ml-auto">
+                        <label for="desc">单位：</label>
+                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col col-4">
+                        <label for="desc">坯布：</label>
+                        <div class="col border">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="desc">密度：</label>
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                                <span>--</span>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                                <span>--</span>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                                <span>--</span>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                    </div>
+                                    <div class="col col-4">
+                                        <div class="form-group">
+                                            <label for="desc">门幅：</label>
+                                            <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="desc">克重：</label>
+                                            <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="desc">密度：</label>
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-8">
+                        <label for="desc">成品：</label>
+                        <div class="col border">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="desc">洗前密度：</label>
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                                <span>--</span>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                                <span>--</span>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                                <span>--</span>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col col-4">
-                                    <div class="form-group">
-                                        <label for="desc">门幅：</label>
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="desc">洗后密度：</label>
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                                <span>--</span>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                                <span>--</span>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                                <span>--</span>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="desc">克重：</label>
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                    <div class="col col-2">
+                                        <div class="form-group">
+                                            <label for="desc">门幅：</label>
+                                            <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="desc">克重：</label>
+                                            <input type="text" class="form-control" id="desc" v-model="spec.desc">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -64,72 +200,13 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col col-auto">
-                        <span>成品:</span>
-                    </div>
-                    <div class="col border">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="desc">纱支：</label>
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="desc">密度：</label>
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="desc">密度：</label>
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="desc">门幅：</label>
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="desc">克重：</label>
-                                        <input type="text" class="form-control" id="desc" v-model="spec.desc">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="row justify-content-center">
                     <button type="确认" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
     </div>
-    <!-- <v-layout row>
-        <v-flex xs10 offset-xs1 md8 offset-md2>
-            <form>
-                <v-text-field v-model="name" :error-messages="nameErrors" :counter="10" label="Name" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                <v-text-field v-model="email" :error-messages="emailErrors" label="E-mail" required @input="$v.email.$touch()" @blur="$v.email.$touch()"></v-text-field>
-                <v-select v-model="select" :items="items" :error-messages="selectErrors" label="Item" required @change="$v.select.$touch()"
-                    @blur="$v.select.$touch()"></v-select>
-                <v-checkbox v-model="checkbox" :error-messages="checkboxErrors" label="Do you agree?" required @change="$v.checkbox.$touch()"
-                    @blur="$v.checkbox.$touch()"></v-checkbox>
-                <v-btn @click="submit">submit</v-btn>
-                <v-btn @click="clear">clear</v-btn>
-            </form>
-        </v-flex>
-    </v-layout> -->
-
 </template>
 
 <script>
@@ -143,136 +220,45 @@
     } from 'vuelidate/lib/validators'
 
     export default {
-        mixins: [validationMixin],
-
-        validations: {
-            name: {
-                required,
-                maxLength: maxLength(10)
-            },
-            email: {
-                required,
-                email
-            },
-            select: {
-                required
-            },
-            checkbox: {
-                required
-            }
-        },
-
         data: () => ({
             spec: {
-                id: '1234556677899',
-                code: '00001',
-                name: '6850 2/3斜（左右捻）',
-                desc: 'desc of 6850 2/3斜（左右捻）',
-                constructure: '2/3斜',
-                grey: { //'坯布' 
-                    yarn: { //纱织 
-                        warp: {
-                            value: [6850],
-                            unit: 'g'
-                        },
-                        weft: {
-                            value: [6850],
-                            unit: 'g'
-                        }
+                id: null,
+                code: null,
+                name: null,
+                desc: null,
+                constructure: null,
+                yarUnit: null,
+                yarn: {
+                    warp: [null, null, null],
+                    weft: [null, null, null],
+                },
+                dnstyUnit: null,
+                grey: {
+                    dnsty: {
+                        warp: [null, null, null],
+                        weft: [null, null, null],
                     },
-                    dnsty: { //密度 
-                        warp: {
-                            value: [6850],
-                            unit: 'g'
-                        },
-                        weft: {
-                            value: [6850],
-                            unit: 'g'
-                        }
-                    },
-                    width: "'178(70')",
-                    GSM: 150
+                    width: null,
+                    GSM: null
                 },
                 product: {
-                    yarn: {
-                        warp: {
-                            value: [6850],
-                            unit: 'g'
-                        },
-                        weft: {
-                            value: [6850],
-                            unit: 'g'
-                        }
-                    },
                     dnstyBW: {
-                        warp: {
-                            value: [6850],
-                            unit: 'g'
-                        },
-                        weft: {
-                            value: [6850],
-                            unit: 'g'
-                        }
+                        warp: [null, null, null],
+                        weft: [null, null, null],
                     },
                     dnstyAW: {
-                        warp: {
-                            value: [6850],
-                            unit: 'g'
-                        },
-                        weft: {
-                            value: [6850],
-                            unit: 'g'
-                        }
+                        warp: [null, null, null],
+                        weft: [null, null, null],
                     },
-                    width: "325(128')",
-                    GSM: 250
+                    width: null,
+                    GSM: null
                 },
-                createDate: new Date(2018, 6,
-                    27),
-                modifiedDate: new Date(2018, 6, 27)
+                createDate: null,
+                modifiedDate: null
             }
         }),
-
-        computed: {
-            checkboxErrors() {
-                const errors = []
-                if (!this.$v.checkbox.$dirty) return errors;
-                !this.$v.checkbox.required && errors.push('You must agree to continue!')
-                return errors
-            },
-            selectErrors() {
-                const errors = []
-                if (!this.$v.select.$dirty) return errors;
-                !this.$v.select.required && errors.push('Item is required')
-                return errors
-            },
-            nameErrors() {
-                const errors = []
-                if (!this.$v.name.$dirty) return errors;
-                !this.$v.name.maxLength && errors.push('Name must be at most 10 characters long');
-                !this.$v.name.required && errors.push('Name is required.')
-                return errors
-            },
-            emailErrors() {
-                const errors = []
-                if (!this.$v.email.$dirty) return errors;
-                !this.$v.email.email && errors.push('Must be valid e-mail');
-                !this.$v.email.required && errors.push('E-mail is required')
-                return errors
-            }
-        },
-
         methods: {
-            submit() {
-                this.$v.$touch()
-            },
-            clear() {
-                this.$v.$reset()
-                this.name = ''
-                this.email = ''
-                this.select = null
-                this.checkbox = false
-            }
+            submit() {}
         }
     }
 </script>
