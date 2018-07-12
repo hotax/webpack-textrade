@@ -8,7 +8,8 @@ const getters = {
                 return photos[0].value
             }
         }
-    }
+    },
+    specs: state => state.specs
 }
 
 export default getters

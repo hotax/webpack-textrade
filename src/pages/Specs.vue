@@ -5,11 +5,11 @@
                 <v-layout column>
                     <label for="exampleInputEmail1" class="ml-2 text-light">请输入查询条件：</label>
                     <textarea id="exampleInputEmail1" class="flex form-control pl-2 text-success bg-dark border-0" v-model="queryCondi"></textarea>
-                    <button type="submit" class="btn bg-info">查询</button>
+                    <button type="submit" class="btn bg-info" @click="searchSpecs">查询</button>
                 </v-layout>
             </v-flex>
             <v-flex d-flex lg10>
-                <v-data-table :headers="headers" :items="specs" hide-actions item-key="code">
+                <v-data-table :headers="headers" :items="specList" hide-actions item-key="id">
                     <template slot="items" slot-scope="props">
                         <tr @click="props.expanded = !props.expanded">
                             <td>{{ props.item.code }}</td>
@@ -36,6 +36,10 @@
     </v-container>
 </template>
 <script>
+    import {
+        mapGetters,
+        mapActions
+    } from 'vuex'
     import HelloComponent from '../components/HelloComponent.vue'
     import NavList from '../../finelets/components/NavList.vue'
     export default {
@@ -71,141 +75,22 @@
                     text: '日期',
                     align: 'center',
                     value: 'modifiedDate'
-                }],
-                specs: [{
-                        code: '00001',
-                        name: '6850 2/3斜（左右捻）',
-                        desc: 'desc of 6850 2/3斜（左右捻）',
-                        constructure: '2/3斜',
-                        grey: {
-                            yarn: {
-                                warp: {
-                                    value: [6850],
-                                    unit: 'g'
-                                },
-                                weft: {
-                                    value: [6850],
-                                    unit: 'g'
-                                }
-                            },
-                            dnsty: {
-                                warp: {
-                                    value: [6850],
-                                    unit: 'g'
-                                },
-                                weft: {
-                                    value: [6850],
-                                    unit: 'g'
-                                }
-                            },
-                            width: "'178(70')",
-                            GSM: 150
-                        },
-                        product: {
-                            yarn: {
-                                warp: {
-                                    value: [6850],
-                                    unit: 'g'
-                                },
-                                weft: {
-                                    value: [6850],
-                                    unit: 'g'
-                                }
-                            },
-                            dnstyBW: {
-                                warp: {
-                                    value: [6850],
-                                    unit: 'g'
-                                },
-                                weft: {
-                                    value: [6850],
-                                    unit: 'g'
-                                }
-                            },
-                            dnstyAW: {
-                                warp: {
-                                    value: [6850],
-                                    unit: 'g'
-                                },
-                                weft: {
-                                    value: [6850],
-                                    unit: 'g'
-                                }
-                            },
-                            width: "325(128')",
-                            GSM: 250
-                        },
-                        createDate: new Date(2018, 6, 27),
-                        modifiedDate: new Date(2018, 5, 24)
-                    },
-                    {
-                        code: '00002',
-                        name: '6850 2/3斜（左右捻）',
-                        desc: 'desc of 6850 2/3斜（左右捻）',
-                        constructure: '2/3斜',
-                        grey: {
-                            yarn: {
-                                warp: {
-                                    value: [6850],
-                                    unit: 'g'
-                                },
-                                weft: {
-                                    value: [6850],
-                                    unit: 'g'
-                                }
-                            },
-                            dnsty: {
-                                warp: {
-                                    value: [6850],
-                                    unit: 'g'
-                                },
-                                weft: {
-                                    value: [6850],
-                                    unit: 'g'
-                                }
-                            },
-                            width: "'178(70')",
-                            GSM: 150
-                        },
-                        product: {
-                            yarn: {
-                                warp: {
-                                    value: [6850],
-                                    unit: 'g'
-                                },
-                                weft: {
-                                    value: [6850],
-                                    unit: 'g'
-                                }
-                            },
-                            dnstyBW: {
-                                warp: {
-                                    value: [6850],
-                                    unit: 'g'
-                                },
-                                weft: {
-                                    value: [6850],
-                                    unit: 'g'
-                                }
-                            },
-                            dnstyAW: {
-                                warp: {
-                                    value: [6850],
-                                    unit: 'g'
-                                },
-                                weft: {
-                                    value: [6850],
-                                    unit: 'g'
-                                }
-                            },
-                            width: "325(128')",
-                            GSM: 250
-                        },
-                        createDate: new Date(2018, 6, 27),
-                        modifiedDate: new Date(2018, 6, 27)
-                    }
-                ]
+                }]
             }
+        },
+        computed: { ...mapGetters(['specs']),
+            specList() {
+                let data = []
+                if (this.specs && this.specs.collection) {
+                    this.specs.collection.items.forEach(item => {
+                        data.push(item.data)
+                    });
+                }
+                return data
+            }
+        },
+        methods: { ...mapActions(['searchSpecs']),
+            search() {}
         }
     }
 </script>

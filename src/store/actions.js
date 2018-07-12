@@ -40,6 +40,12 @@ const actions = {
                 }
             })
         }
+    },
+    async searchSpecs({
+        commit
+    }) {
+        const specs = await $fetch('api/specs')
+        commit('specs', specs)
     }
 }
 
