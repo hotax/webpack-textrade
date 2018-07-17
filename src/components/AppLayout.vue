@@ -67,7 +67,7 @@
         <v-icon>account_box</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-content>
+    <v-content app>
       <v-container fluid>
         <router-view></router-view>
       </v-container>

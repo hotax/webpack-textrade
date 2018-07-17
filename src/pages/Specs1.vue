@@ -1,28 +1,16 @@
 <template>
-    <div class="container-fluid h-100">
-        <div class="row mt-0 mb-0 h-100">
-            <div class="col-2 p-0">
-                <div class=" container-fluid h-100 p-0 pl-2 pr-1">
-                    <div class="row align-items-end" style="height: 7%">
-                        <div class="col-12">
-                            <label class="ml-2 text-light">请输入查询条件：</label>
-                        </div>
-                    </div>
-                    <div class="row" style="height: 85%">
-                        <div class="col-12">
-                            <textarea class=" fill-height form-control pl-2 text-success bg-dark border-0" v-model="queryCondi"></textarea>
-                        </div>
-                    </div>
-                    <div class="row align-items-start" style="height: 8%">
-                        <div class="col-12">
-                            <button type="submit" class="ml-0 btn bg-info" style="width: 100%" @click="searchSpecs">查询</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-10 p-0">
-                <table class="table table-dark table-striped">
-                    <thead class=" ">
+    <v-container fluid fill-height light class="pt-0 pb-0">
+        <v-layout row>
+            <v-flex d-flex lg2 class="pt-3">
+                <v-layout column>
+                    <label for="exampleInputEmail1" class="ml-2 text-light">请输入查询条件：</label>
+                    <textarea id="exampleInputEmail1" class="flex form-control pl-2 text-success bg-dark border-0" v-model="queryCondi"></textarea>
+                    <button type="submit" class="btn bg-info" @click="searchSpecs">查询</button>
+                </v-layout>
+            </v-flex>
+            <v-flex d-flex lg10>
+                <table class="table table-dark">
+                    <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">First</th>
@@ -51,10 +39,26 @@
                         </tr>
                     </tbody>
                 </table>
-
-            </div>
-        </div>
-    </div>
+                <!-- <v-data-table :headers="headers" :items="specList" hide-actions item-key="id">
+                    <template slot="items" slot-scope="props">
+                        <tr @click="props.expanded = !props.expanded">
+                            <td>{{ props.item.code }}</td>
+                            <td class="text-xs-right">{{ props.item.name }}</td>
+                            <td class="text-xs-right">{{ props.item.constructure }}</td>
+                            <td class="text-xs-right"></td>
+                            <td class="text-xs-right"></td>
+                            <td class="text-xs-right">{{ props.item.modifiedDate }}</td>
+                        </tr>
+                    </template>
+                    <template slot="expand" slot-scope="props">
+                        <v-card flat>
+                            <v-card-text>{{props.item.grey}}</v-card-text>
+                        </v-card>
+                    </template>
+                </v-data-table> -->
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 <script>
     import {
@@ -117,8 +121,17 @@
 </script>
 
 <style lang="stylus">
-    .full-height {
-        height: 100%;
-        min-height: 100%;
+    .data-table {
+        .head {
+            >li {
+                background: #303030
+            }
+        }
+        .body {
+            >li {
+                background: #343a40
+            }
+        }
+
     }
 </style>
