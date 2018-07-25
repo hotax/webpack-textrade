@@ -13,7 +13,7 @@
                             <textarea class=" fill-height form-control pl-2 text-success bg-dark border-0" v-model="queryCondi"></textarea>
                         </div>
                     </div>
-                    <div class="row align-items-start" style="height: 8%">
+                    <div class="row" style="height: 8%">
                         <div class="col-12">
                             <button type="submit" class="ml-0 btn bg-info" style="width: 100%" @click="searchSpecs">查询</button>
                         </div>
@@ -21,33 +21,17 @@
                 </div>
             </div>
             <div class="col-10 p-0">
-                <table class="table table-dark table-striped">
-                    <thead class=" ">
+                <table class="table table-dark table-striped table-bordered table-hover table-sm">
+                    <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th class="text-center" scope="col" v-for="fld in headers" :key="fld.value">
+                                <h5>{{fld.text}}</h5>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
+                        <tr v-for="item in specList" :key="item.id">
+                            <td v-for="(fld, j) in headers" :key="item[fld.value] + '-' + j" :class="'align-middle ' + (fld.align ? 'text-' + fld.align : 'text-left')">{{item[fld.value]}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -74,24 +58,35 @@
                 pagination: {},
                 headers: [{
                     text: '编号',
-                    align: 'center',
+                    align: 'right',
                     value: 'code'
                 }, {
                     text: '名称',
-                    align: 'center',
+                    align: 'left',
                     value: 'name'
                 }, {
+                    text: '成分',
+                    value: 'component'
+                }, {
                     text: '组织',
-                    align: 'center',
+                    align: 'left',
                     value: 'constructure'
                 }, {
-                    text: 'grey',
-                    align: 'center',
-                    value: 'grey'
+                    text: '经纱',
+                    value: 'warp'
                 }, {
-                    text: '成品',
-                    align: 'center',
-                    value: 'product'
+                    text: '纬纱',
+                    value: 'weft'
+                }, {
+                    text: '密度',
+                    value: 'dnsty'
+                }, {
+                    text: '门幅',
+                    value: 'width'
+                }, {
+                    text: '克重',
+                    align: 'right',
+                    value: 'GSM'
                 }, {
                     text: '日期',
                     align: 'center',
@@ -104,7 +99,30 @@
                 let data = []
                 if (this.specs && this.specs.collection) {
                     this.specs.collection.items.forEach(item => {
-                        data.push(item.data)
+                        item = item.data
+                        let warp
+                        if (item.yarn && item.yarn.warp[0])
+                            warp = item.yarn.warp[0]
+                        let weft
+                        if (item.yarn && item.yarn.weft[0])
+                            weft = item.yarn.weft[0]
+                        let width, GSM
+                        if (item.product) {
+                            width = item.product.width
+                            GSM = item.product.GSM
+                        }
+
+                        data.push({
+                            id: item.id,
+                            code: item.code,
+                            name: item.name,
+                            component: item.component,
+                            constructure: item.constructure,
+                            warp: warp,
+                            weft: weft,
+                            width: width,
+                            GSM: GSM
+                        })
                     });
                 }
                 return data
@@ -115,10 +133,3 @@
         }
     }
 </script>
-
-<style lang="stylus">
-    .full-height {
-        height: 100%;
-        min-height: 100%;
-    }
-</style>
