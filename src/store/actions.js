@@ -43,8 +43,8 @@ const actions = {
     },
     async searchSpecs({
         commit
-    }) {
-        const specs = await $fetch('api/specs')
+    }, condi) {
+        const specs = await $fetch('api/specs?q=' + condi)
         commit('specs', specs)
     }
 }

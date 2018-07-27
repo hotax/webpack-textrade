@@ -15,7 +15,7 @@
                     </div>
                     <div class="row" style="height: 8%">
                         <div class="col-12">
-                            <button type="submit" class="ml-0 btn bg-info" style="width: 100%" @click="searchSpecs">查询</button>
+                            <button type="submit" class="ml-0 btn bg-info" style="width: 100%" @click="search">查询</button>
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,10 @@
             }
         },
         methods: { ...mapActions(['searchSpecs']),
-            search() {}
+            search() {
+                const q = this.queryCondi
+                this.searchSpecs(q)
+            }
         }
     }
 </script>
