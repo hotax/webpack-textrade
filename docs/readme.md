@@ -35,7 +35,7 @@ This is a regular paragraph.
 
 This is [an example](http://example.com/ "Title") inline link.
 
-![my image](E:/clx/照片/Image_20180507222437.jpg) has no title attribute.
+![my image](../../../../照片/Image_20180507222437.jpg) has no title attribute.
 
 [me]: url/to/image  "Optional title attribute"
 
