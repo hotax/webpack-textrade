@@ -1,10 +1,10 @@
 import Admin from '../pages/Admin.vue'
-import Home from '../pages/purchaser/Home.vue'
+import Home from '../pages/biz/Home.vue'
+import ProductForm from '../pages/biz/ProductForm.vue'
 import MasterUser from '../pages/MasterUser.vue'
-import MasterPart from '../pages/MasterPart.vue'
+import MasterProduct from '../pages/biz/MasterProduct.vue'
 import MasterSupplier from '../pages/MasterSupplier.vue'
 import MasterPurchase from '../pages/purchaser/MasterPurchase.vue'
-import PartForm from '../pages/PartForm.vue'
 import SupplierForm from '../pages/SupplierForm.vue'
 import PurchaseForm from '../pages/PurchaseForm.vue'
 import WithdrawForm from '../pages/WithdrawForm.vue'
@@ -23,7 +23,7 @@ import CeoMasterSupplier from '../pages/ceo/MasterSupplier.vue'
 import CeoMasterPurchase from '../pages/ceo/MasterPurchase.vue'
 
 const ROLE_ADMIN = 'ADMIN'
-const ROLE_PURCHASER = 'PURCHASER'
+const ROLE_BIZ = 'BIZ'
 const ROLE_CEO = 'CEO'
 
 const masterPurchaseSubroutes = [
@@ -32,7 +32,7 @@ const masterPurchaseSubroutes = [
     name: 'masterPOView',
     component: POView,
     meta: {
-      role: ROLE_PURCHASER
+      role: ROLE_BIZ
     }
   },
   {
@@ -40,7 +40,7 @@ const masterPurchaseSubroutes = [
     name: 'masterEditPO',
     component: POEditor,
     meta: {
-      role: ROLE_PURCHASER
+      role: ROLE_BIZ
     }
   }
 ]
@@ -49,7 +49,7 @@ const routes = [{
   path: '/',
   name: 'home',
   meta: {
-    role: ROLE_PURCHASER
+    role: ROLE_BIZ
   },
   component: Home
 },
@@ -70,18 +70,18 @@ const routes = [{
   component: MasterUser
 },
 {
-  path: '/master/part',
-  name: 'masterPart',
+  path: '/master/product',
+  name: 'masterProduct',
   meta: {
-    role: ROLE_PURCHASER
+    role: ROLE_BIZ
   },
-  component: MasterPart
+  component: MasterProduct
 },
 {
   path: '/master/supplier',
   name: 'masterSupplier',
   meta: {
-    role: ROLE_PURCHASER
+    role: ROLE_BIZ
   },
   component: MasterSupplier
 },
@@ -89,24 +89,24 @@ const routes = [{
   path: '/master/purchase',
   name: 'masterPurchase',
   meta: {
-    role: ROLE_PURCHASER
+    role: ROLE_BIZ
   },
   component: MasterPurchase,
   children: masterPurchaseSubroutes
 },
 {
-  path: '/forms/part',
-  name: 'partForm',
+  path: '/forms/product',
+  name: 'productForm',
   meta: {
-    role: ROLE_PURCHASER
+    role: ROLE_BIZ
   },
-  component: PartForm
+  component: ProductForm
 },
 {
   path: '/forms/supplier',
   name: 'supplierForm',
   meta: {
-    role: ROLE_PURCHASER
+    role: ROLE_BIZ
   },
   component: SupplierForm
 },
@@ -114,7 +114,7 @@ const routes = [{
   path: '/forms/purchase',
   name: 'purchaseForm',
   meta: {
-    role: ROLE_PURCHASER
+    role: ROLE_BIZ
   },
   component: PurchaseForm
 },
@@ -122,7 +122,7 @@ const routes = [{
   path: '/forms/withdraw',
   name: 'withdrawForm',
   meta: {
-    role: ROLE_PURCHASER
+    role: ROLE_BIZ
   },
   component: WithdrawForm
 },
@@ -131,7 +131,7 @@ const routes = [{
   name: 'POInvTransaction',
   component: PoInv,
   meta: {
-    role: ROLE_PURCHASER
+    role: ROLE_BIZ
   }
 },
 {
@@ -195,7 +195,7 @@ const routes = [{
 const starts = {
   ADMIN: 'admin',
   CEO: 'ceoHome',
-  PURCHASER: 'home'
+  BIZ: 'home'
 }
 
 export default {

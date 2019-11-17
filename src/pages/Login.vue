@@ -7,7 +7,7 @@
       />
     </div>
     <div class="row justify-content-center mt-3">
-      <h4>JSMetta Cross</h4>
+      <h4>Hotex TexTrade</h4>
     </div>
     <div class="row justify-content-center mt-3">
       <div class="col-4 loginform pt-3 pb-3">

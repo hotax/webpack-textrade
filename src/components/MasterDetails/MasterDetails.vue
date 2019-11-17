@@ -14,7 +14,7 @@
         <div v-if="master.editable || master.visible" class="position-relative" :class="collapse" id="masterform">
             <div>
               <div v-for="(item, index) in master.items" :key="index">
-                <input-text v-if="!item.type || item.type=='text'" class="mt-2" :icon="item.icon"
+                <input-text v-if="!item.type || item.type=='text' || item.type == 'number'" :type = "item.type || 'text'" class="mt-2" :icon="item.icon"
                             v-model="masterAttrs[item.name]" :readonly="isMasterItemReadonly(item)"/>
                 <radio v-else-if="item.type=='radio'" class="mt-2" :icon="item.icon" :options="item.options"
                             v-model="masterAttrs[item.name]" :readonly="isMasterItemReadonly(item)"/>

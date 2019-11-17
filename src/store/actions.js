@@ -3,21 +3,12 @@ import {
   $post,
   $login,
   $put,
-  $upload,
   $entry
 } from '../plugins/fetch'
 import router from '../router'
 import queryCollection from '../helpers/DealWithQueryCollection'
-
-const purchaseRefs = {
-  Part: 'part',
-  Supplier: 'supplier',
-  User: ['applier', 'reviewer', 'creator']
-}
-
-const withdrawRefs = {
-  Part: 'part',
-  User: 'actor'
+const productRefs = {
+  User: 'creator'
 }
 
 const actions = {
@@ -92,8 +83,8 @@ const actions = {
     return data
   },
 
-  async searchParts ({getters}, condi) {
-    const data = await queryCollection.searchCollection(getters, 'parts', condi, 'Part')
+  async searchProducts ({getters}, condi) {
+    const data = await queryCollection.searchCollection(getters, 'products', condi, 'Product', productRefs)
     return data
   },
 
@@ -102,21 +93,16 @@ const actions = {
     return data
   },
 
-  async searchPurchases ({getters}, condi) {
-    const data = await queryCollection.searchCollection(getters, 'purchases', condi, 'Purchase', purchaseRefs)
+  async searchCustomers ({getters}, condi) {
+    const data = await queryCollection.searchCollection(getters, 'customers', condi, 'Customer')
     return data
   },
 
-  async searchWithdraws ({getters}, condi) {
-    const data = await queryCollection.searchCollection(getters, 'withdraws', condi, 'Withdraw', withdrawRefs)
-    return data
-  },
-
-  async updatePart ({commit}, data) {
+  async updateProduct ({commit}, data) {
     await $put(data.links.self, data.data.__v, data.data)
     let updated = await $get(data.links.self)
-    updated = await queryCollection.dealWithEntity(updated, 'Part')
-    commit('selectedPart', updated)
+    updated = await queryCollection.dealWithEntity(updated, 'Product', productRefs)
+    commit('selectedProduct', updated)
   },
 
   async updateSupplier ({commit}, data) {
@@ -126,11 +112,11 @@ const actions = {
     commit('selectedSupplier', updated)
   },
 
-  async updatePurchase ({commit}, data) {
+  async updateCustomer ({commit}, data) {
     await $put(data.links.self, data.data.__v, data.data)
     const updated = await $get(data.links.self)
-    const entity = await queryCollection.dealWithEntity(updated, 'Purchase', purchaseRefs)
-    commit('selectedPurchase', entity)
+    const entity = await queryCollection.dealWithEntity(updated, 'Customer')
+    commit('selectedCustomer', entity)
   },
 
   async getSupplier (ctx, url) {
@@ -138,14 +124,19 @@ const actions = {
     return data
   },
 
-  async getPart (ctx, url) {
+  async getCustomer (ctx, url) {
     const data = await $get(url)
     return data
   },
 
-  async createPart ({getters}, data) {
+  async getProduct (ctx, url) {
+    const data = await $get(url)
+    return data
+  },
+
+  async createProduct ({getters}, data) {
     const entry = getters.entry
-    const url = entry.parts
+    const url = entry.products
     await $post(url, data)
   },
 
@@ -155,44 +146,10 @@ const actions = {
     await $post(url, data)
   },
 
-  async createPurchase ({getters}, data) {
+  async createCustomer ({getters}, data) {
     const entry = getters.entry
-    const url = entry.purchases
+    const url = entry.customers
     await $post(url, data)
-  },
-
-  async createWithdraw ({getters}, data) {
-    const entry = getters.entry
-    const url = entry.withdraws
-    await $post(url, data)
-  },
-
-  async poTransaction ({getters}, {url, type, data}) {
-    const finalUrl = `${url}?type=${type}`
-    const actor = getters.user.id
-    await $post(finalUrl, {...data, actor})
-  },
-
-  async refreshSelectedPurchase ({getters, commit}) {
-    let data = getters.selectedPurchase
-    const po = await $get(data.links.self)
-    const entity = await queryCollection.dealWithEntity(po, 'Purchase', purchaseRefs)
-    commit('selectedPurchase', entity)
-  },
-
-  async searchPurchaseTransTasks ({
-    commit
-  }, condi) {
-    const tasks = await $get('/task/purTransTasks')
-    // commit('purTransTasks', tasks)
-    return tasks
-  },
-
-  async importPurchasesFromCsv ({
-    commit
-  }, formData) {
-    const result = await $upload('/purchases/csv', formData)
-    return result.json()
   }
 }
 

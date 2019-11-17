@@ -17,8 +17,8 @@ const vuexLocalStorage = new VuexPersist({
   // filter: mutation => (true)
 })
 
-const items = ['entry', 'token', 'user', 'homeTab', 'selectedPart', 'selectedSupplier',
-  'selectedPurchase', 'selectedUser', 'purTransTasks'
+const items = ['entry', 'token', 'user', 'homeTab', 'selectedProduct', 'selectedSupplier',
+  'selectedCustomer', 'selectedUser'
 ]
 
 let {states, getters, mutations} = createStore(items)

@@ -1,5 +1,5 @@
 const roles = [
-  { name: '采购员', value: 'PURCHASER' },
+  { name: '业务员', value: 'BIZ' },
   { name: '执行总监', value: 'CEO' }
 ]
 
