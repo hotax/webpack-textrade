@@ -1,23 +1,16 @@
 import Admin from '../pages/Admin.vue'
 import Home from '../pages/biz/Home.vue'
 import ProductForm from '../pages/biz/ProductForm.vue'
+import SupplierForm from '../pages/biz/SupplierForm.vue'
+import CustomerForm from '../pages/biz/CustomerForm.vue'
 import MasterUser from '../pages/MasterUser.vue'
 import MasterProduct from '../pages/biz/MasterProduct.vue'
-import MasterSupplier from '../pages/MasterSupplier.vue'
-import MasterPurchase from '../pages/purchaser/MasterPurchase.vue'
-import SupplierForm from '../pages/SupplierForm.vue'
-import PurchaseForm from '../pages/PurchaseForm.vue'
-import WithdrawForm from '../pages/WithdrawForm.vue'
-import ImportPurchasesFromExcel from '../pages/ImportPurchasesFromExcel.vue'
+import MasterSupplier from '../pages/biz/MasterSupplier.vue'
+import MasterCustomer from '../pages/biz/MasterCustomer.vue'
 import CeoHome from '../pages/ceo/CeoHome.vue'
 import Login from '../pages/Login.vue'
 import Signup from '../pages/Signup.vue'
 import NotFound from '../components/NotFound.vue'
-import PoInv from '../pages/purchaser/PoInv.vue'
-
-import POView from '../pages/POView.vue'
-// import POTransactions from '../pages/purchaser/POTransactions.vue'
-import POEditor from '../pages/POEditor.vue'
 import CeoMasterPart from '../pages/ceo/MasterPart.vue'
 import CeoMasterSupplier from '../pages/ceo/MasterSupplier.vue'
 import CeoMasterPurchase from '../pages/ceo/MasterPurchase.vue'
@@ -25,25 +18,6 @@ import CeoMasterPurchase from '../pages/ceo/MasterPurchase.vue'
 const ROLE_ADMIN = 'ADMIN'
 const ROLE_BIZ = 'BIZ'
 const ROLE_CEO = 'CEO'
-
-const masterPurchaseSubroutes = [
-  {
-    path: '/master/purchase/content',
-    name: 'masterPOView',
-    component: POView,
-    meta: {
-      role: ROLE_BIZ
-    }
-  },
-  {
-    path: '/master/purchase/edit',
-    name: 'masterEditPO',
-    component: POEditor,
-    meta: {
-      role: ROLE_BIZ
-    }
-  }
-]
 
 const routes = [{
   path: '/',
@@ -86,13 +60,12 @@ const routes = [{
   component: MasterSupplier
 },
 {
-  path: '/master/purchase',
-  name: 'masterPurchase',
+  path: '/master/customer',
+  name: 'masterCustomer',
   meta: {
     role: ROLE_BIZ
   },
-  component: MasterPurchase,
-  children: masterPurchaseSubroutes
+  component: MasterCustomer
 },
 {
   path: '/forms/product',
@@ -111,28 +84,12 @@ const routes = [{
   component: SupplierForm
 },
 {
-  path: '/forms/purchase',
-  name: 'purchaseForm',
+  path: '/forms/customer',
+  name: 'customerForm',
   meta: {
     role: ROLE_BIZ
   },
-  component: PurchaseForm
-},
-{
-  path: '/forms/withdraw',
-  name: 'withdrawForm',
-  meta: {
-    role: ROLE_BIZ
-  },
-  component: WithdrawForm
-},
-{
-  path: '/forms/purchase/inv',
-  name: 'POInvTransaction',
-  component: PoInv,
-  meta: {
-    role: ROLE_BIZ
-  }
+  component: CustomerForm
 },
 {
   path: '/login',
@@ -149,11 +106,6 @@ const routes = [{
     public: true
   },
   component: Signup
-},
-{
-  path: '/ImportPurchasesFromExcel',
-  name: 'ImportPurchasesFromExcel',
-  component: ImportPurchasesFromExcel
 },
 {
   path: '/ceo/home',

@@ -10,6 +10,8 @@ import queryCollection from '../helpers/DealWithQueryCollection'
 const productRefs = {
   User: 'creator'
 }
+const supplierRefs = productRefs
+const customerRefs = productRefs
 
 const actions = {
   async entry (ctx) {
@@ -89,12 +91,12 @@ const actions = {
   },
 
   async searchSuppliers ({getters}, condi) {
-    const data = await queryCollection.searchCollection(getters, 'suppliers', condi, 'Supplier')
+    const data = await queryCollection.searchCollection(getters, 'suppliers', condi, 'Supplier', supplierRefs)
     return data
   },
 
   async searchCustomers ({getters}, condi) {
-    const data = await queryCollection.searchCollection(getters, 'customers', condi, 'Customer')
+    const data = await queryCollection.searchCollection(getters, 'customers', condi, 'Customer', customerRefs)
     return data
   },
 
@@ -108,14 +110,14 @@ const actions = {
   async updateSupplier ({commit}, data) {
     await $put(data.links.self, data.data.__v, data.data)
     let updated = await $get(data.links.self)
-    updated = await queryCollection.dealWithEntity(updated, 'Supplier')
+    updated = await queryCollection.dealWithEntity(updated, 'Supplier', supplierRefs)
     commit('selectedSupplier', updated)
   },
 
   async updateCustomer ({commit}, data) {
     await $put(data.links.self, data.data.__v, data.data)
     const updated = await $get(data.links.self)
-    const entity = await queryCollection.dealWithEntity(updated, 'Customer')
+    const entity = await queryCollection.dealWithEntity(updated, 'Customer', customerRefs)
     commit('selectedCustomer', entity)
   },
 

@@ -86,41 +86,25 @@
           <template slot-scope="data">
             <div class="row border-0 p-2">
               <div class="col">
-                <h6 class="font-weight-bold">{{data.item.data.code}}</h6>
                 <div class="d-flex">
-                  <h6
-                    class="text-primary mb-1 selectable"
-                    @click="navToSupplier(data.item)"
-                  >{{data.item.data.name}}</h6>
+                  <h6 class="font-weight-bold mr-auto">{{data.item.data.code}}</h6>
+                  <octicon v-if="data.item.data.name" name="note" class="mt-1" size="16" style="color:green"/>
+                  <h6 class="text-primary ml-2 selectable" @click="navToSupplier(data.item)">{{data.item.data.name}}</h6>
                 </div>
                 <div class="d-flex">
-                  <h6 class="mb-1">{{data.item.data.address}}</h6>
+                  <octicon v-if="data.item.data.address" name="milestone" class="mt-1" size="16" style="color:green"/>
+                  <h6 class="ml-2">{{data.item.data.address}}</h6>
                 </div>
                 <div class="d-flex">
-                  <octicon
-                    name="primitive-dot"
-                    scale="1.1"
-                    style="color:yellow"
-                  ></octicon>
-                  <h6
-                    class="ml-1"
-                    style="font-size:10px"
-                  >{{data.item.data.link)}</h6>
-                  <octicon
-                    v-if="data.item.data.tags"
-                    name="tag"
-                    class="ml-3"
-                    size="16"
-                    style="color:green"
-                  />
-                  <h6
-                    class="ml-1 mr-auto"
-                    style="font-size:10px"
-                  >{{data.item.data.tags}}</h6>
-                  <h6
-                    class="text-secondary"
-                    style="font-size:10px"
-                  >更新于 {{data.item.data.updatedDate | date}}</h6>
+                  <octicon v-if="data.item.data.tags" name="tag" class="mt-1" size="16" style="color:green"/>
+                  <h6 class="ml-1 mr-auto">{{data.item.data.tags}}</h6>
+                  <octicon v-if="data.item.data.link" name="primitive-dot" class="mr-1" scale="1.1" style="color:yellow"></octicon>
+                  <h6 class="mb-1 selectable">{{data.item.data.link}}</h6>
+                </div>
+                <div class="d-flex">
+                  <octicon v-if="data.item.creator" name="person" class="" size="16" style="color:green"/>
+                  <h6 v-if="data.item.creator" class="ml-1" style="font-size:10px" >{{data.item.creator.data.name}}</h6>
+                  <h6 class="text-secondary ml-auto" style="font-size:10px">更新于 {{data.item.data.updatedDate | date}}</h6>
                 </div>
               </div>
             </div>
@@ -137,41 +121,25 @@
           <template slot-scope="data">
             <div class="row border-0 p-2">
               <div class="col">
-                <h6 class="font-weight-bold">{{data.item.data.code}}</h6>
                 <div class="d-flex">
-                  <h6
-                    class="text-primary mb-1 selectable"
-                    @click="navToCustomer(data.item)"
-                  >{{data.item.data.name}}</h6>
+                  <h6 class="font-weight-bold mr-auto">{{data.item.data.code}}</h6>
+                  <octicon v-if="data.item.data.name" name="note" class="mt-1" size="16" style="color:green"/>
+                  <h6 class="text-primary ml-2 selectable" @click="navToCustomer(data.item)">{{data.item.data.name}}</h6>
                 </div>
                 <div class="d-flex">
-                  <h6 class="mb-1">{{data.item.data.address}}</h6>
+                  <octicon v-if="data.item.data.address" name="milestone" class="mt-1" size="16" style="color:green"/>
+                  <h6 class="ml-2">{{data.item.data.address}}</h6>
                 </div>
                 <div class="d-flex">
-                  <octicon
-                    name="primitive-dot"
-                    scale="1.1"
-                    style="color:yellow"
-                  ></octicon>
-                  <h6
-                    class="ml-1"
-                    style="font-size:10px"
-                  >{{data.item.data.link)}</h6>
-                  <octicon
-                    v-if="data.item.data.tags"
-                    name="tag"
-                    class="ml-3"
-                    size="16"
-                    style="color:green"
-                  />
-                  <h6
-                    class="ml-1 mr-auto"
-                    style="font-size:10px"
-                  >{{data.item.data.tags}}</h6>
-                  <h6
-                    class="text-secondary"
-                    style="font-size:10px"
-                  >更新于 {{data.item.data.updatedDate | date}}</h6>
+                  <octicon v-if="data.item.data.tags" name="tag" class="mt-1" size="16" style="color:green"/>
+                  <h6 class="ml-1 mr-auto">{{data.item.data.tags}}</h6>
+                  <octicon v-if="data.item.data.link" name="primitive-dot" class="mr-1" scale="1.1" style="color:yellow"></octicon>
+                  <h6 class="mb-1 selectable">{{data.item.data.link}}</h6>
+                </div>
+                <div class="d-flex">
+                  <octicon v-if="data.item.creator" name="person" class="" size="16" style="color:green"/>
+                  <h6 v-if="data.item.creator" class="ml-1" style="font-size:10px" >{{data.item.creator.data.name}}</h6>
+                  <h6 class="text-secondary ml-auto" style="font-size:10px">更新于 {{data.item.data.updatedDate | date}}</h6>
                 </div>
               </div>
             </div>
@@ -299,7 +267,7 @@ export default {
     },
 
     async onSearchCustomers (cond) {
-      let r = createQueryString(['state'], cond)
+      let r = createQueryString([], cond)
       this.customers = await state.dispatch('searchCustomers', r)
     },
 
@@ -307,7 +275,7 @@ export default {
       const loaders = {
         products: this.onSearchProducts,
         suppliers: this.onSearchSuppliers,
-        customer: this.onSearchCustomers
+        customers: this.onSearchCustomers
       }
       const func = loaders[page]
       if (!func) return
