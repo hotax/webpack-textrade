@@ -6,7 +6,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx:latest as build-stage
+FROM nginx:stable as build-stage
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=vtextrade-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
