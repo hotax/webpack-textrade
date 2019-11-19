@@ -1,4 +1,4 @@
-FROM node:latest as vcross-stage
+FROM node:latest as vtextrade-stage
 
 WORKDIR /app
 COPY package*.json ./
@@ -8,7 +8,7 @@ RUN npm run build
 
 FROM nginx:latest as build-stage
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=vcross-stage /app/dist /usr/share/nginx/html
+COPY --from=vtextrade-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx-debug", "-g", "daemon off;"]
 
