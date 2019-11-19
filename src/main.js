@@ -19,9 +19,9 @@ for (const key in filters) {
 }
 
 Vue.use(VueFetch, {
-  loginUrl: process.env.NODE_ENV === 'production' ? 'http://192.168.5.166/textrade/auth/login' : 'http://localhost:9501/textrade/auth/login',
-  entryUrl: process.env.NODE_ENV === 'production' ? 'http://192.168.5.166/textrade/index.html' : 'http://localhost:9501/textrade/index.html',
-  baseUrl: process.env.NODE_ENV === 'production' ? 'http://192.168.5.166/textrade/api' : 'http://localhost:9501/textrade/api'
+  loginUrl: process.env.NODE_ENV === 'production' ? 'http://47.96.122.87/textrade/auth/login' : 'http://localhost:9501/textrade/auth/login',
+  entryUrl: process.env.NODE_ENV === 'production' ? 'http://47.96.122.87/textrade/index.html' : 'http://localhost:9501/textrade/index.html',
+  baseUrl: process.env.NODE_ENV === 'production' ? 'http://47.96.122.87/textrade/api' : 'http://localhost:9501/textrade/api'
 })
 
 async function main () {
